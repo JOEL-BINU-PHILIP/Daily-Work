@@ -1,0 +1,7 @@
+<h2>Edit User</h2>
+
+<form (ngSubmit)="updateUser()">
+  <input [(ngModel)]="user.name" name="name" placeholder="Name" required />
+  <input [(ngModel)]="user.email" name="email" placeholder="Email" required />
+  <button type="submit">Update</button>
+</form>
