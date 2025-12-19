@@ -1,0 +1,28 @@
+version: "3.8"
+
+services:
+  mongo:
+    image: mongo:6
+    container_name: mongo-crud-db
+    restart: always
+    ports:
+      - "27017:27017"
+    environment:
+      MONGO_INITDB_DATABASE: crud-demo
+    volumes:
+      - mongo_data:/data/db
+
+  app:
+    build: .
+    container_name: mongo-crud-app
+    restart: always
+    depends_on:
+      - mongo
+    ports:
+      - "8080:8080"
+    environment:
+      SPRING_APPLICATION_NAME: mongo_crud_demo
+      SPRING_DATA_MONGODB_URI: mongodb://mongo:27017/crud-demo
+
+volumes:
+  mongo_data:
